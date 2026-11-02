@@ -2,7 +2,9 @@
 
 Kubernetes operator that keeps asking "what if this zone died?" and tells you which workloads would have nowhere to go.
 
->Early WIP. Don't install it anywhere you care about.
+>v1alpha1, no release yet. You build the image yourself, and the API can still change.
+
+![zonecheck finding what breaks when us-east-1a goes](docs/demo.gif)
 
 Snapshot the cluster -> take a zone (or node, or pool) away -> run kube-scheduler's own plugins against what's left. Every few minutes, for every zone. Pods that can't be placed get listed with the same message the scheduler would put on them:
 
@@ -12,11 +14,13 @@ Snapshot the cluster -> take a zone (or node, or pool) away -> run kube-schedule
 
 It only reads. Nothing gets drained, cordoned, or evicted, so it's safe to leave running in a cluster you're nervous about. The cost is that it's a prediction, and a prediction is only as good as the rules it copies. So it copies the scheduler's, rather than writing its own.
 
+How it all works (and why): [docs/design.md](docs/design.md).
+
 ## Doesn't something already do this?
 
-Parts of it. cluster-capacity and kube-scheduler-simulator both run the real scheduler against a cluster, but you run them by hand, once, and read the answer. Nobody does that every week, and capacity drifts every deploy.
+Parts of it. cluster-capacity and kube-scheduler-simulator both run real scheduler code against your cluster. cluster-capacity tells you how many more copies of one pod spec fit. kube-scheduler-simulator mirrors your cluster so you can poke at scheduling decisions in a UI. Neither takes a zone (or node, or pool) away and tells you what's left with nowhere to go.
 
-Gremlin's Detected Risks checks whether you're spread across zones. It doesn't check whether the surviving zones have room for everything that moves, and that gets less likely as a cluster fills up.
+Gremlin's Detected Risks checks whether you're spread across zones. It doesn't check whether the surviving zones have room for everything that moves, and that gets less likely as a cluster fills up. Its zone redundancy Scenario can show you, but by actually cutting a zone off.
 
 ## Usage
 
@@ -26,6 +30,13 @@ You'll need Go 1.26+ and a cluster (kind's fine).
 make install   # CRDs into your current kubectl context
 make run       # controller, locally
 kubectl apply -f config/samples/checks_v1alpha1_zonecheck.yaml
+```
+
+In the cluster instead, push the image somewhere it can pull from:
+
+```sh
+make docker-build docker-push IMG=<registry>/zonecheck:<tag>
+make deploy IMG=<registry>/zonecheck:<tag>
 ```
 
 ```yaml
@@ -118,6 +129,8 @@ No preemption. A high-priority pod that would bump others shows up as unschedula
 No DRA (`ResourceClaim`s for GPUs and the like).
 
 Pods already waiting to be scheduled aren't counted as competing for the room.
+
+Pods a PDB blocks are still placed as if they moved. In a real drain they'd stay put, so `Unschedulable` can be a bit high when a PDB blocks pods in the same zone.
 
 Nodes get checked in name order where the scheduler races its workers, and score ties go to the first node by name instead of a random one. Same answer every run, at the cost of sometimes differing from the real pick. Big clusters only check a sample, same size as the scheduler's.
 
