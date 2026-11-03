@@ -1,5 +1,5 @@
 /*
-Copyright 2026 ionicether.
+Copyright 2026 idleCLI.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -24,7 +24,7 @@ import (
 
 	"github.com/prometheus/client_golang/prometheus"
 
-	checksv1alpha1 "github.com/ionicether/zonecheck-operator/api/v1alpha1"
+	checksv1alpha1 "github.com/idleCLI/zonecheck-operator/api/v1alpha1"
 )
 
 // the ZoneCheck's name

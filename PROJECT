@@ -7,7 +7,7 @@ domain: zonecheck.dev
 layout:
 - go.kubebuilder.io/v4
 projectName: zonecheck
-repo: github.com/ionicether/zonecheck-operator
+repo: github.com/idleCLI/zonecheck-operator
 resources:
 - api:
     crdVersion: v1
@@ -15,6 +15,6 @@ resources:
   domain: zonecheck.dev
   group: checks
   kind: ZoneCheck
-  path: github.com/ionicether/zonecheck-operator/api/v1alpha1
+  path: github.com/idleCLI/zonecheck-operator/api/v1alpha1
   version: v1alpha1
 version: "3"

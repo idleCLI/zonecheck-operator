@@ -1,7 +1,7 @@
 //go:build e2e
 
 /*
-Copyright 2026 ionicether.
+Copyright 2026 idleCLI.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -41,8 +41,8 @@ import (
 	"sigs.k8s.io/controller-runtime/pkg/client"
 	"sigs.k8s.io/controller-runtime/pkg/client/config"
 
-	checksv1alpha1 "github.com/ionicether/zonecheck-operator/api/v1alpha1"
-	"github.com/ionicether/zonecheck-operator/test/utils"
+	checksv1alpha1 "github.com/idleCLI/zonecheck-operator/api/v1alpha1"
+	"github.com/idleCLI/zonecheck-operator/test/utils"
 )
 
 const (

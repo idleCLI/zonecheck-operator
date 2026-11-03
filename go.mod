@@ -1,4 +1,4 @@
-module github.com/ionicether/zonecheck-operator
+module github.com/idleCLI/zonecheck-operator
 
 go 1.26.0
 

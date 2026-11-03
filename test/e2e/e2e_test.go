@@ -1,7 +1,7 @@
 //go:build e2e
 
 /*
-Copyright 2026 ionicether.
+Copyright 2026 idleCLI.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -29,7 +29,7 @@ import (
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
 
-	"github.com/ionicether/zonecheck-operator/test/utils"
+	"github.com/idleCLI/zonecheck-operator/test/utils"
 )
 
 const serviceAccountName = "zonecheck-controller-manager"

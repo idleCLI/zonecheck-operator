@@ -1,5 +1,5 @@
 /*
-Copyright 2026 ionicether.
+Copyright 2026 idleCLI.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -43,8 +43,8 @@ import (
 	"sigs.k8s.io/controller-runtime/pkg/reconcile"
 	"sigs.k8s.io/yaml"
 
-	checksv1alpha1 "github.com/ionicether/zonecheck-operator/api/v1alpha1"
-	"github.com/ionicether/zonecheck-operator/internal/metrics"
+	checksv1alpha1 "github.com/idleCLI/zonecheck-operator/api/v1alpha1"
+	"github.com/idleCLI/zonecheck-operator/internal/metrics"
 )
 
 var _ = Describe("ZoneCheck Controller", func() {

@@ -1,5 +1,5 @@
 /*
-Copyright 2026 ionicether.
+Copyright 2026 idleCLI.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -34,7 +34,7 @@ import (
 	"k8s.io/apimachinery/pkg/types"
 	"sigs.k8s.io/controller-runtime/pkg/client/fake"
 
-	checksv1alpha1 "github.com/ionicether/zonecheck-operator/api/v1alpha1"
+	checksv1alpha1 "github.com/idleCLI/zonecheck-operator/api/v1alpha1"
 )
 
 func node(name string, labels map[string]string) corev1.Node {

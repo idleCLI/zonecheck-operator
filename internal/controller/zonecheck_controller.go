@@ -1,5 +1,5 @@
 /*
-Copyright 2026 ionicether.
+Copyright 2026 idleCLI.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -35,10 +35,10 @@ import (
 	logf "sigs.k8s.io/controller-runtime/pkg/log"
 	"sigs.k8s.io/controller-runtime/pkg/predicate"
 
-	checksv1alpha1 "github.com/ionicether/zonecheck-operator/api/v1alpha1"
-	"github.com/ionicether/zonecheck-operator/internal/metrics"
-	"github.com/ionicether/zonecheck-operator/internal/placement"
-	"github.com/ionicether/zonecheck-operator/internal/snapshot"
+	checksv1alpha1 "github.com/idleCLI/zonecheck-operator/api/v1alpha1"
+	"github.com/idleCLI/zonecheck-operator/internal/metrics"
+	"github.com/idleCLI/zonecheck-operator/internal/placement"
+	"github.com/idleCLI/zonecheck-operator/internal/snapshot"
 )
 
 // keep in sync w/ the MaxItems/MaxLength markers in the API
